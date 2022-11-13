@@ -1,13 +1,28 @@
+from functools import lru_cache
 from typing import Union
 
-from fastapi import FastAPI
+from fastapi import FastAPI, Depends
+
+from config import Settings
 
 app = FastAPI()
 
 
-@app.get("/")
-async def root():
-    return {"hello": "world"}
+@lru_cache()
+def get_settings() -> Settings:
+    """
+    Get Settings instance
+    :return: Settings
+    """
+    return Settings()
+
+
+@app.get("/settings")
+async def root(settings: Settings = Depends(get_settings)) -> dict:
+    if settings.DEBUG:
+        response = {key: value for key, value in vars(settings).items()}
+
+        return response
 
 
 @app.get("/items/{item_id}")
