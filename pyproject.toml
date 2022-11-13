@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "weeklyplannerbackend"
+version = "0.1.0"
+description = ""
+authors = ["Vladyslav Ovcharenko <vladyslav.ovcharenko@onix-systems.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+fastapi = "^0.86.0"
+uvicorn = {extras = ["standard"], version = "^0.19.0"}
+python-jose = {extras = ["cryptography"], version = "^3.3.0"}
+passlib = {extras = ["bcrypt"], version = "^1.7.4"}
+python-multipart = "^0.0.5"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
